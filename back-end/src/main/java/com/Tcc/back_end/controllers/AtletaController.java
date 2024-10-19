@@ -1,33 +1,46 @@
 package com.Tcc.back_end.controllers;
 
-import com.Tcc.back_end.entities.Atleta;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.Tcc.back_end.model.Atleta;
+import com.Tcc.back_end.services.AtletaService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import com.Tcc.back_end.repository.AtletaRepository;
-import java.util.Optional;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/atleta")
+@RequestMapping("/atletas")
 public class AtletaController {
 
-    @Autowired
-    private AtletaRepository repository;
+    private final AtletaService atletaService;
 
-    @PostMapping
-    @ResponseBody
-    public Atleta novoAtleta(@Validated @RequestBody Atleta atleta) {
-        this.repository.save(atleta);
-        return atleta;
+    public AtletaController(AtletaService atletaService) {
+        this.atletaService = atletaService;
     }
 
     @GetMapping
-    public Iterable<Atleta> retornarAtletas() {
-        return this.repository.findAll();
+    public ResponseEntity<List<Atleta>> retornarAtletas() {
+        List<?> result = this.atletaService.getAll();
+        return result.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok((List<Atleta>) result);
     }
 
     @GetMapping("/{id}")
-    public Optional<Atleta> obterAtletaPorId(@PathVariable int id) {
-        return this.repository.findById(id);
+    public ResponseEntity<Atleta> buscarAtletaPorId(@PathVariable Long id) {
+        var result = this.atletaService.findById(id);
+        return ResponseEntity.ok(result);
+    }
+
+    @PostMapping
+    @ResponseBody
+    public ResponseEntity<?> novoAtleta(@Validated @RequestBody Atleta atleta) {
+        var response = atletaService.save(atleta);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @PutMapping
+    public ResponseEntity<?> atualizarAtleta(@Validated @RequestBody Atleta atleta) {
+        var response = atletaService.save(atleta);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }
