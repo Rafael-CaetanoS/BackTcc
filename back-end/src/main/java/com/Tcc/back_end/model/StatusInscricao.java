@@ -1,11 +1,10 @@
-package com.Tcc.back_end.entities;
+package com.Tcc.back_end.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
-@lombok.Data
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tb_statusInscricao")
@@ -13,7 +12,7 @@ public class StatusInscricao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idStatusInscricao;
+    private Long idStatusInscricao;
 
     private String status;
 

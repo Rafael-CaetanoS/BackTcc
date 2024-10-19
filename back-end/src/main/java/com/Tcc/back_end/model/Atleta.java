@@ -1,34 +1,39 @@
-package com.Tcc.back_end.entities;
+package com.Tcc.back_end.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-@lombok.Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 @Table(name = "tb_atleta")
 public class Atleta {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "idAtleta")
-    private int id;
+    private Long id;
 
+    @Column(nullable = false)
     private String nomeAtleta;
 
+    @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
     private String senha;
 
+    @Column(nullable = false)
     private Date dataNascimento;
 
+    @Column(nullable = false)
     private String apelido;
 
+    @Column(nullable = false)
     private String telefone;
 
     private int avaliacao;
@@ -41,9 +46,8 @@ public class Atleta {
 
     private int pontosFutevolei;
 
-    private  String imagem;
+    private String imagem;
 
     @OneToMany(mappedBy = "atleta")
-    private List<Partida> partidas
-    ;
+    private List<Partida> partidas;
 }
