@@ -16,13 +16,13 @@ public class LoginController {
     private AtletaService atletaService;
 
     @GetMapping
-    public String index () {
+    public String index() {
         return "login/index";
     }
 
     //vai colocar no front uma action="/logar" e method="POST"
     @PostMapping("/logar")
-    public String logar (@ModelAttribute LoginDTO loginDTO, Model model) {
+    public String logar(@ModelAttribute LoginDTO loginDTO, Model model) {
         Atleta atleta = loginDTO.toAtleta();
         model.addAttribute("email", atleta.getEmail());
         model.addAttribute("senha", atleta.getSenha());

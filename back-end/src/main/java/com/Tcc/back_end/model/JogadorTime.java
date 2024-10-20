@@ -11,8 +11,8 @@ import lombok.*;
 public class JogadorTime {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "idJogadorTime")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idJogadorTime")
     private Long id;
 
     @Column(name = "pontosVolei")
@@ -27,7 +27,7 @@ public class JogadorTime {
     @Column(name = "gols")
     private int gols;
 
-    @JoinColumn (name = "fk_idTimePartida")
+    @JoinColumn(name = "fk_idTimePartida")
     @ManyToOne
     private TimePartida timePartida;
 

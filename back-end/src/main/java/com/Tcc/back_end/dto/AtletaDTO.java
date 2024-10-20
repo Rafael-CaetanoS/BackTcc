@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class AtletaDTO  implements Serializable {
+public class AtletaDTO implements Serializable {
 
     private Long id;
 
@@ -38,7 +38,7 @@ public class AtletaDTO  implements Serializable {
 
     private int pontosFutevolei = 0;
 
-    private  String imagem;
+    private String imagem;
 
     private List<Partida> partidas;
 

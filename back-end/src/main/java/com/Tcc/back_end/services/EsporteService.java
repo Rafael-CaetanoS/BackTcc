@@ -35,7 +35,7 @@ public class EsporteService {
 
                 esporteResult = this.esporteRepository.save(esporteResult);
             }
-        }else{
+        } else {
             esporteResult = this.esporteRepository.save(esporte);
         }
 

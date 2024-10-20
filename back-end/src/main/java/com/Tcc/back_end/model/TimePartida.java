@@ -7,12 +7,12 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table (name = "tb_timePartida")
+@Table(name = "tb_timePartida")
 public class TimePartida {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "idTimesPartida")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idTimesPartida")
     private Long id;
 
     private String nomeTime;
@@ -23,7 +23,7 @@ public class TimePartida {
 
     private int qtdeVitorias;
 
-    @JoinColumn (name = "fk_idPartida")
+    @JoinColumn(name = "fk_idPartida")
     @ManyToOne
     private Partida partida;
 
