@@ -46,14 +46,14 @@ public class AtletaService {
         return atletaResult;
     }
 
-    public boolean validarLogin(String email, String senha) {
+  /*  public boolean validarLogin(String email, String senha) {
 
-        Optional<Atleta> atletaOptional = Optional.ofNullable(atletaRepository.findByEmail(email));
+        Optional<Atleta> atletaOptional = Optional<>.ofNullable(atletaRepository.findByEmail(email));
 
         if (atletaOptional.isPresent()) {
             Atleta atleta = atletaOptional.get();
             return atleta.getSenha().equals(senha);
         }
         return false;
-    }
+    }*/
 }

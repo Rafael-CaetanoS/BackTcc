@@ -9,6 +9,6 @@ public interface AtletaRepository extends JpaRepository<Atleta, Long> {
 
     Optional<Atleta> findById(Long id);
 
-    Atleta findByEmail(String email);
+    Optional<Atleta> findByEmail(String email);
 
 }

@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/atletas")
+@CrossOrigin(origins = "localhost4200")
 public class AtletaController {
 
     private final AtletaService atletaService;
