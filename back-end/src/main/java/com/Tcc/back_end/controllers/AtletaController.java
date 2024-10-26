@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/atletas")
-@CrossOrigin(origins = "localhost4200")
 public class AtletaController {
 
     private final AtletaService atletaService;
@@ -32,12 +31,12 @@ public class AtletaController {
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping
-    @ResponseBody
-    public ResponseEntity<?> novoAtleta(@Validated @RequestBody Atleta atleta) {
-        var response = atletaService.save(atleta);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-    }
+//    @PostMapping
+//    @ResponseBody
+//    public ResponseEntity<?> novoAtleta(@Validated @RequestBody Atleta atleta) {
+//        var response = atletaService.save(atleta);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+//    }
 
     @PutMapping
     public ResponseEntity<?> atualizarAtleta(@Validated @RequestBody Atleta atleta) {

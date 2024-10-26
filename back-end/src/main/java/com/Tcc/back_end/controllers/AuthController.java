@@ -10,12 +10,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+
 
 @RestController
 @RequestMapping("/auth")
@@ -31,7 +29,7 @@ public class AuthController {
         Atleta atleta = this.atletaRepository.findByEmail(body.email()).orElseThrow(() ->new RuntimeException("atleta não encontrado"));
         if(passwordEncoder.matches(body.senha(), atleta.getSenha())){
             String token = this.tokenService.generateToken(atleta);
-            return ResponseEntity.ok(new ResponseDTO(atleta.getNomeAtleta(), token));
+            return ResponseEntity.ok(new ResponseDTO(atleta.getNomeAtleta(), token, atleta.getId()));
         }
         return ResponseEntity.badRequest().build();
     }
@@ -52,7 +50,7 @@ public class AuthController {
             this.atletaRepository.save(newAtleta);
 
             String token = this.tokenService.generateToken(newAtleta);
-            return ResponseEntity.ok(new ResponseDTO(newAtleta.getNomeAtleta(), token));
+            return ResponseEntity.ok(new ResponseDTO(newAtleta.getNomeAtleta(), token, newAtleta.getId()));
         }
 
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Atleta já registrado com este e-mail.");
