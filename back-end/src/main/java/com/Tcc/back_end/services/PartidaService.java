@@ -28,8 +28,8 @@ public class PartidaService {
     public Partida save(Partida partida) {
         Partida partidaResult = null;
 
-        if (partida.getId() != null) {
-            partidaResult = this.findById(partida.getId());
+        if (partida.getIdPartida() != null) {
+            partidaResult = this.findById(partida.getIdPartida());
 
             if (partidaResult != null) {
                 partidaResult.setTitulo(partida.getTitulo());

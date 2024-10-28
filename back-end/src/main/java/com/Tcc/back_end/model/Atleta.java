@@ -1,5 +1,6 @@
 package com.Tcc.back_end.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,7 +17,7 @@ public class Atleta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idAtleta")
-    private Long id;
+    private Long idAtleta;
 
     @Column(nullable = false)
     private String nomeAtleta;
@@ -48,6 +49,7 @@ public class Atleta {
 
     private String imagem;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "atleta")
     private List<Partida> partidas;
 }

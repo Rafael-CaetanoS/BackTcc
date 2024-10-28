@@ -1,5 +1,6 @@
 package com.Tcc.back_end.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,7 +17,7 @@ public class Partida {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idPartida")
-    private Long id;
+    private Long idPartida;
 
     @Column(nullable = false)
     private String titulo;
@@ -36,6 +37,10 @@ public class Partida {
     private String faixaEtaria;
 
     private int qtdeAtletas;
+
+    private String nomeLocal;
+
+    private String Endereco;
 
     @JoinColumn(name = "fk_idAtleta")
     @ManyToOne

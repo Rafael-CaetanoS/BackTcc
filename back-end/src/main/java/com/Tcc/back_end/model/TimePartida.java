@@ -12,8 +12,8 @@ public class TimePartida {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idTimesPartida")
-    private Long id;
+    @Column(name = "idTimePartida")
+    private Long idTimePartida;
 
     private String nomeTime;
 

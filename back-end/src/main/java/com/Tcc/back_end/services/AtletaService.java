@@ -27,8 +27,8 @@ public class AtletaService {
     public Atleta save(Atleta atleta) {
         Atleta atletaResult = null;
 
-        if (atleta.getId() != null) {
-            atletaResult = this.findById(atleta.getId());
+        if (atleta.getIdAtleta() != null) {
+            atletaResult = this.findById(atleta.getIdAtleta());
 
             if (atletaResult != null) {
                 atletaResult.setNomeAtleta(atleta.getNomeAtleta());

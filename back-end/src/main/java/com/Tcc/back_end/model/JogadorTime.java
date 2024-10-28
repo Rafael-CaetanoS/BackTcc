@@ -13,7 +13,7 @@ public class JogadorTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idJogadorTime")
-    private Long id;
+    private Long idJogadorTime;
 
     @Column(name = "pontosVolei")
     private int pontosVolei;

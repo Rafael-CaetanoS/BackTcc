@@ -1,5 +1,6 @@
 package com.Tcc.back_end.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,6 +20,7 @@ public class Esporte {
     @Column(nullable = false)
     private String nomeEsporte;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "esporte")
     private List<Partida> partidas;
 }
