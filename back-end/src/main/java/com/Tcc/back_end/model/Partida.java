@@ -40,7 +40,7 @@ public class Partida {
 
     private String nomeLocal;
 
-    private String Endereco;
+    private String endereco;
 
     @JoinColumn(name = "fk_idAtleta")
     @ManyToOne

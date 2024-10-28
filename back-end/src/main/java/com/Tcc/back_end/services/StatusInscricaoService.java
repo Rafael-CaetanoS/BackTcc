@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service
 public class StatusInscricaoService {
+
     @Autowired
     private StatusInscricaoRepository statusInscricaoRepository;
 
@@ -31,7 +32,6 @@ public class StatusInscricaoService {
 
             if (statusInscricaoResult != null) {
                 statusInscricaoResult.setStatus(statusInscricao.getStatus());
-
 
                 statusInscricaoResult = statusInscricaoRepository.save(statusInscricao);
             }

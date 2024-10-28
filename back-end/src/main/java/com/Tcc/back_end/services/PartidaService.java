@@ -39,6 +39,8 @@ public class PartidaService {
                 partidaResult.setData(partida.getData());
                 partidaResult.setFaixaEtaria(partida.getFaixaEtaria());
                 partidaResult.setQtdeAtletas(partida.getQtdeAtletas());
+                partidaResult.setNomeLocal(partida.getNomeLocal());
+                partidaResult.setEndereco(partida.getEndereco());
 
                 partidaResult = partidaRepository.save(partidaResult);
             }

@@ -20,17 +20,19 @@ public class Inscricao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idInscricao;
 
+    @Column(columnDefinition = "TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataInscricao;
 
-    @JoinColumn(name = "fk_idAtleta")
     @ManyToOne
+    @JoinColumn(name = "fk_idAtleta")
     private Atleta atleta;
 
-    @JoinColumn(name = "fk_idStatusInscricao")
     @ManyToOne
+    @JoinColumn(name = "fk_idStatusInscricao")
     private StatusInscricao statusInscricao;
 
-    @JoinColumn(name = "fk_idPartida")
     @ManyToOne
+    @JoinColumn(name = "fk_idPartida")
     private Partida partida;
 }
