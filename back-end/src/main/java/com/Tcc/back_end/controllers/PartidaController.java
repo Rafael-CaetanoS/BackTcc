@@ -31,6 +31,11 @@ public class PartidaController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/atleta/{atletaId}")
+    public List<Partida> getPartidasByAtletaId(@PathVariable Long atletaId) {
+        return partidaService.findPartidasByAtletaId(atletaId);
+    }
+
     @PostMapping
     @ResponseBody
     public ResponseEntity<?> novaPartida(@Validated @RequestBody Partida partida) {

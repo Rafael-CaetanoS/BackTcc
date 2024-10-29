@@ -6,6 +6,7 @@ import lombok.*;
 
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -49,5 +50,9 @@ public class Partida {
     @JoinColumn(name = "fk_idEsporte")
     @ManyToOne
     private Esporte esporte;
+
+    @OneToMany(mappedBy = "partida")
+    @JsonIgnore // Ignorar este campo na serialização JSON
+    private List<Inscricao> inscricoes; // Relacionamento com as inscrições
 
 }

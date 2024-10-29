@@ -51,4 +51,13 @@ public class PartidaService {
         return partidaResult;
     }
 
+
+    public List<Partida> findPartidasByAtletaId(Long atletaId) {
+        List<Partida> partidas = partidaRepository.findPartidasByAtletaId(atletaId);
+        if (partidas.isEmpty()) {
+            throw new EntityNotFoundException("Nenhuma partida encontrada para o atleta com ID: " + atletaId);
+        }
+        return partidas;
+    }
+
 }
