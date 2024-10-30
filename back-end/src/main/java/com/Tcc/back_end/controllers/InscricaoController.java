@@ -31,6 +31,11 @@ public class InscricaoController {
         var result = this.inscricaoService.findById(id);
         return ResponseEntity.ok(result);
     }
+    @GetMapping("/partida/{idPartida}")
+    public ResponseEntity<List<Inscricao>> buscarInscricaoPorIdPartida(@PathVariable Long idPartida) {
+        List<Inscricao> inscricoes = inscricaoService.findInscricaoByPartidaId(idPartida);
+        return ResponseEntity.ok(inscricoes);
+    }
 
     @PostMapping
     @ResponseBody
