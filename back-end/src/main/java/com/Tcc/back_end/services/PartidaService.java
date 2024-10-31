@@ -1,5 +1,6 @@
 package com.Tcc.back_end.services;
 
+import com.Tcc.back_end.model.Inscricao;
 import com.Tcc.back_end.model.Partida;
 import com.Tcc.back_end.repository.PartidaRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -7,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -15,6 +17,9 @@ public class PartidaService {
 
     @Autowired
     private PartidaRepository partidaRepository;
+
+    @Autowired
+    private InscricaoService inscricaoService;
 
     public List<Partida> getAll() {
         return this.partidaRepository.findAll();
@@ -46,6 +51,13 @@ public class PartidaService {
             }
         } else {
             partidaResult = this.partidaRepository.save(partida);
+
+            Inscricao inscricao = new Inscricao();
+
+            inscricao.setAtleta(partida.getAtleta());
+            inscricao.setPartida(partidaResult);
+
+            inscricaoService.save(inscricao);
         }
 
         return partidaResult;
@@ -59,5 +71,6 @@ public class PartidaService {
         }
         return partidas;
     }
+
 
 }
