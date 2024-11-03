@@ -19,9 +19,10 @@ public class PartidaController {
         this.partidaService = partidaService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<Partida>> retornarPartidas() {
-        List<?> result = this.partidaService.getAll();
+    //retorna partidas com status = 1 e que não foi feito pelo próprio atleta
+    @GetMapping("/retornarPartida/{id}")
+    public ResponseEntity<List<Partida>> retornarPartidas(@PathVariable Long id) {
+        List<?> result = this.partidaService.findPartidasByStatusPartidaId(id);
         return result.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok((List<Partida>) result);
     }
 

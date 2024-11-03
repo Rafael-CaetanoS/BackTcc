@@ -55,4 +55,7 @@ public class Partida {
     @JsonIgnore // Ignorar este campo na serialização JSON
     private List<Inscricao> inscricoes; // Relacionamento com as inscrições
 
+    @JoinColumn(name = "fk_statusPartida")
+    @ManyToOne
+    private StatusPartida statusPartida;
 }

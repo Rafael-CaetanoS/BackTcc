@@ -1,8 +1,6 @@
 package com.Tcc.back_end.controllers;
 
-import com.Tcc.back_end.model.Esporte;
 import com.Tcc.back_end.model.StatusInscricao;
-import com.Tcc.back_end.services.EsporteService;
 import com.Tcc.back_end.services.StatusInscricaoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

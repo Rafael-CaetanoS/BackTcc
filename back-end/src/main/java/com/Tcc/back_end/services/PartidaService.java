@@ -2,7 +2,9 @@ package com.Tcc.back_end.services;
 
 import com.Tcc.back_end.model.Inscricao;
 import com.Tcc.back_end.model.Partida;
+import com.Tcc.back_end.model.StatusPartida;
 import com.Tcc.back_end.repository.PartidaRepository;
+import com.Tcc.back_end.repository.StatusPartidaRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ public class PartidaService {
 
     @Autowired
     private InscricaoService inscricaoService;
+    @Autowired
+    private StatusPartidaRepository statusPartidaRepository;
 
     public List<Partida> getAll() {
         return this.partidaRepository.findAll();
@@ -50,10 +54,15 @@ public class PartidaService {
                 partidaResult = partidaRepository.save(partidaResult);
             }
         } else {
+            partidaResult = partida;
+
+            StatusPartida statusPartida = new StatusPartida();
+            statusPartida.setIdStatusPartida(1L);
+            partidaResult.setStatusPartida(statusPartida);
+
             partidaResult = this.partidaRepository.save(partida);
 
             Inscricao inscricao = new Inscricao();
-
             inscricao.setAtleta(partida.getAtleta());
             inscricao.setPartida(partidaResult);
 
@@ -65,12 +74,19 @@ public class PartidaService {
 
 
     public List<Partida> findPartidasByAtletaId(Long atletaId) {
-        List<Partida> partidas = partidaRepository.findPartidasByAtletaId(atletaId);
+        List<Partida> partidas = partidaRepository.findPartidasByInscricao(atletaId);
         if (partidas.isEmpty()) {
             throw new EntityNotFoundException("Nenhuma partida encontrada para o atleta com ID: " + atletaId);
         }
         return partidas;
     }
 
+    public List<Partida> findPartidasByStatusPartidaId(Long atletaId) {
+        List<Partida> partidas = partidaRepository.retornarPartidas(atletaId);
+        if (partidas.isEmpty()) {
+            throw new EntityNotFoundException("Nenhuma partida encontrada foi encontrada");
+        }
+        return partidas;
+    }
 
 }
