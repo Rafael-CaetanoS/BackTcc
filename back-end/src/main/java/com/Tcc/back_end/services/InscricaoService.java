@@ -27,6 +27,7 @@ public class InscricaoService {
 
 
     public List<Inscricao> getAll() {
+
         return this.inscricaoRepository.findAll();
     }
 

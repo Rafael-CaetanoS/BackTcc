@@ -72,8 +72,8 @@ public class PartidaService {
         return partidaResult;
     }
 
-
-    public List<Partida> findPartidasByAtletaId(Long atletaId) {
+    //retornas as partidas que o usario está inscrito
+    public List<Partida> findPartidasByInscricaoId(Long atletaId) {
         List<Partida> partidas = partidaRepository.findPartidasByInscricao(atletaId);
         if (partidas.isEmpty()) {
             throw new EntityNotFoundException("Nenhuma partida encontrada para o atleta com ID: " + atletaId);
@@ -81,10 +81,19 @@ public class PartidaService {
         return partidas;
     }
 
+    //retorna as partidas que não foram criadas pelo usuario
     public List<Partida> findPartidasByStatusPartidaId(Long atletaId) {
         List<Partida> partidas = partidaRepository.retornarPartidas(atletaId);
         if (partidas.isEmpty()) {
-            throw new EntityNotFoundException("Nenhuma partida encontrada foi encontrada");
+            throw new EntityNotFoundException("Nenhuma partida foi encontrada");
+        }
+        return partidas;
+    }
+
+    public List<Partida> findPartidaByAtletaId(Long atletaId){
+        List<Partida> partidas = partidaRepository.findPartidaByAtletaId(atletaId);
+        if (partidas.isEmpty()){
+            throw new EntityNotFoundException("Nenhuma partida criada pelo usario foi encontrada");
         }
         return partidas;
     }

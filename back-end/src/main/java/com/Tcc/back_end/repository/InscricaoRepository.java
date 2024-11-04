@@ -18,6 +18,6 @@ public interface InscricaoRepository extends JpaRepository<Inscricao, Long> {
 
     boolean existsByAtleta_IdAtletaAndPartida_IdPartida(Long atletaId, Long partidaId);
 
-    @Query("SELECT i FROM Inscricao i INNER JOIN i.partida p WHERE p.idPartida = :idPartida")
+    @Query("SELECT i FROM Inscricao i INNER JOIN i.partida p WHERE p.idPartida = :idPartida and i.statusInscricao.idStatusInscricao = 1")
     List<Inscricao> findInscricoesBypartidaId(@Param("idPartida") Long idPartida);
 }

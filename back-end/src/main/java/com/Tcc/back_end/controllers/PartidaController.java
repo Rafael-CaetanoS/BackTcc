@@ -19,22 +19,30 @@ public class PartidaController {
         this.partidaService = partidaService;
     }
 
-    //retorna partidas com status = 1 e que não foi feito pelo próprio atleta
-    @GetMapping("/retornarPartida/{id}")
-    public ResponseEntity<List<Partida>> retornarPartidas(@PathVariable Long id) {
-        List<?> result = this.partidaService.findPartidasByStatusPartidaId(id);
-        return result.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok((List<Partida>) result);
-    }
-
+    //busca a partida pelo id dela
     @GetMapping("/{id}")
     public ResponseEntity<Partida> buscarPartidaPorId(@PathVariable Long id) {
         var result = this.partidaService.findById(id);
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/atleta/{atletaId}")
+    //retorna partidas com status = 1 e que não foi criada pelo próprio atleta
+    @GetMapping("/retornarPartida/{idAtleta}")
+    public ResponseEntity<List<Partida>> retornarPartidas(@PathVariable Long idAtleta) {
+        List<?> result = this.partidaService.findPartidasByStatusPartidaId(idAtleta);
+        return result.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok((List<Partida>) result);
+    }
+
+    //retorna as partidas que o atleta tá inscrito
+    @GetMapping("/inscricao/{atletaId}")
+    public List<Partida> getPartidasByInscricaoId(@PathVariable Long atletaId) {
+        return partidaService.findPartidasByInscricaoId(atletaId);
+    }
+
+    //retorna as partidas criadas pelo usuario.
+    @GetMapping("/minhasPartidas/{atletaId}")
     public List<Partida> getPartidasByAtletaId(@PathVariable Long atletaId) {
-        return partidaService.findPartidasByAtletaId(atletaId);
+        return partidaService.findPartidaByAtletaId(atletaId);
     }
 
     @PostMapping
