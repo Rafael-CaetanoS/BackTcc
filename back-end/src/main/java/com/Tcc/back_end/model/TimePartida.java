@@ -1,10 +1,14 @@
 package com.Tcc.back_end.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tb_timePartida")
@@ -27,4 +31,12 @@ public class TimePartida {
     @ManyToOne
     private Partida partida;
 
+    @OneToMany(mappedBy = "timePartida")
+    @JsonIgnore
+    private List<JogadorTime> jogadores;
+
+    public TimePartida(Long idTimePartida, String nomeTime) {
+        this.idTimePartida = idTimePartida;
+        this.nomeTime = nomeTime;
+    }
 }

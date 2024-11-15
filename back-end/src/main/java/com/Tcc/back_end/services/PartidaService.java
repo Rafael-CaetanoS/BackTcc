@@ -19,7 +19,6 @@ public class PartidaService {
 
     @Autowired
     private PartidaRepository partidaRepository;
-
     @Autowired
     private InscricaoService inscricaoService;
     @Autowired

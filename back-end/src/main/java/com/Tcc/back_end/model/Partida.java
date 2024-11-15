@@ -9,7 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tb_partida")
@@ -58,4 +59,8 @@ public class Partida {
     @JoinColumn(name = "fk_statusPartida")
     @ManyToOne
     private StatusPartida statusPartida;
+
+    @OneToMany(mappedBy = "partida")
+    @JsonIgnore
+    private List<TimePartida> timePartida;
 }

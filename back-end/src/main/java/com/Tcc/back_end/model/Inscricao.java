@@ -1,5 +1,6 @@
 package com.Tcc.back_end.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -35,4 +37,8 @@ public class Inscricao {
     @ManyToOne
     @JoinColumn(name = "fk_idPartida")
     private Partida partida;
+
+    @OneToMany(mappedBy = "inscricao")
+    @JsonIgnore
+    private List<JogadorTime> jogadores;
 }

@@ -53,7 +53,8 @@ public class InscricaoService {
 
 
         Partida partida = partidaRepository.findById(partidaId)
-                .orElseThrow(()-> new EntityNotFoundException("partida não encontrada"));
+                .orElseThrow(()-> new EntityNotFoundException("Partida não encontrada"));
+
         Long numeroInscritos = inscricaoRepository.countByPartida_IdPartida(partidaId);
 
         if (numeroInscritos >= partida.getQtdeAtletas()) {
