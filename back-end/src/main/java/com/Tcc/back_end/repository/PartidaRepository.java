@@ -19,7 +19,7 @@ public interface PartidaRepository extends JpaRepository<Partida, Long> {
     @Query("SELECT p FROM Partida p INNER JOIN p.inscricoes i WHERE i.atleta.idAtleta = :atletaId")
     List<Partida> findPartidasByInscricao(@Param("atletaId") Long atletaId);
 
-    @Query("SELECT p FROM Partida p INNER JOIN p.atleta a WHERE a.idAtleta = :atletaId")
+    @Query("SELECT p FROM Partida p INNER JOIN p.atleta a INNER JOIN p.statusPartida sp WHERE a.idAtleta = :atletaId AND sp.idStatusPartida = 1")
     List<Partida> findPartidaByAtletaId(@Param("atletaId") Long atletaId);
 
 }

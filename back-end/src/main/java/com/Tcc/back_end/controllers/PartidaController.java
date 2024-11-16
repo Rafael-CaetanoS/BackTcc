@@ -57,4 +57,15 @@ public class PartidaController {
         var response = partidaService.save(partida);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
+
+    @PutMapping("/cancelar/{id}")
+    public ResponseEntity<?> cancelarPartida(@PathVariable Long id) {
+        Partida partida = partidaService.findById(id);
+        if (partida == null) {
+            return ResponseEntity.notFound().build();
+        }
+        partida = partidaService.cancelarPartidaById(partida);
+
+        return ResponseEntity.ok(partida);
+    }
 }

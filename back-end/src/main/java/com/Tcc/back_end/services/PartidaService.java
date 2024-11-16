@@ -6,6 +6,7 @@ import com.Tcc.back_end.model.StatusPartida;
 import com.Tcc.back_end.repository.PartidaRepository;
 import com.Tcc.back_end.repository.StatusPartidaRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.Part;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,6 +50,7 @@ public class PartidaService {
                 partidaResult.setQtdeAtletas(partida.getQtdeAtletas());
                 partidaResult.setNomeLocal(partida.getNomeLocal());
                 partidaResult.setEndereco(partida.getEndereco());
+                partidaResult.setStatusPartida(partida.getStatusPartida());
 
                 partidaResult = partidaRepository.save(partidaResult);
             }
@@ -96,5 +98,15 @@ public class PartidaService {
         }
         return partidas;
     }
+
+    public Partida cancelarPartidaById(Partida partida){
+        StatusPartida status = new StatusPartida();
+        status.setIdStatusPartida(2l);
+        partida.setStatusPartida(status);
+
+        return this.save(partida);
+    }
+
+
 
 }
