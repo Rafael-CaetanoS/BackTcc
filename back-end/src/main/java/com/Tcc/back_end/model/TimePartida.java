@@ -21,22 +21,11 @@ public class TimePartida {
 
     private String nomeTime;
 
-    private int qtdeAtletas;
-
-    private int qtdePartidas;
-
-    private int qtdeVitorias;
-
     @JoinColumn(name = "fk_idPartida")
     @ManyToOne
     private Partida partida;
 
     @OneToMany(mappedBy = "timePartida")
-    @JsonIgnore
     private List<JogadorTime> jogadores;
 
-    public TimePartida(Long idTimePartida, String nomeTime) {
-        this.idTimePartida = idTimePartida;
-        this.nomeTime = nomeTime;
-    }
 }
