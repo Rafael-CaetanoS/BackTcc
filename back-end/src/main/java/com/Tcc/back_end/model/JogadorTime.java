@@ -1,5 +1,6 @@
 package com.Tcc.back_end.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,7 @@ public class JogadorTime {
 
     @JoinColumn(name = "fk_idTimePartida")
     @ManyToOne
+    @JsonIgnore
     private TimePartida timePartida;
 
     @JoinColumn(name = "fk_idInscricao")
