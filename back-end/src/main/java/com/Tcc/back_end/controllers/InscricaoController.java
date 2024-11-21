@@ -44,4 +44,15 @@ public class InscricaoController {
         var response = inscricaoService.save(inscricao);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    @PutMapping("/cancelar/{id}")
+    public ResponseEntity<?> cancelarInscricao(@PathVariable Long id) {
+        Inscricao inscricao = inscricaoService.findById(id);
+        if (inscricao == null) {
+            return ResponseEntity.notFound().build();
+        }
+        inscricao = inscricaoService.cancelarInscricaoById(inscricao);
+
+        return ResponseEntity.ok(inscricao);
+    }
 }

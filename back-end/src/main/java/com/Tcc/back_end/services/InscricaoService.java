@@ -3,6 +3,7 @@ package com.Tcc.back_end.services;
 import com.Tcc.back_end.model.Inscricao;
 import com.Tcc.back_end.model.Partida;
 import com.Tcc.back_end.model.StatusInscricao;
+import com.Tcc.back_end.model.StatusPartida;
 import com.Tcc.back_end.repository.InscricaoRepository;
 import com.Tcc.back_end.repository.PartidaRepository;
 import com.Tcc.back_end.repository.StatusInscricaoRepository;
@@ -40,37 +41,37 @@ public class InscricaoService {
         Inscricao inscricaoResult = null;
         Date date = new Date(System.currentTimeMillis());
 
-        long atletaID = inscricao.getAtleta().getIdAtleta();
+//        long atletaID = inscricao.getAtleta().getIdAtleta();
         Long partidaId = inscricao.getPartida().getIdPartida();
 
-        if(inscricaoRepository.existsByAtleta_IdAtletaAndPartida_IdPartida(atletaID, partidaId)){
-            throw new IllegalStateException("O atleta já está inscrito nesta partida.");
-        }
-
-
-        StatusInscricao statusInscricao = statusInscricaoRepository.findById(1L)
-                .orElseThrow(() -> new EntityNotFoundException("Status de Inscrição não encontrado."));
-
+//        if(inscricaoRepository.existsByAtleta_IdAtletaAndPartida_IdPartida(atletaID, partidaId)){
+//            throw new IllegalStateException("O atleta já está inscrito nesta partida.");
+//        }
 
         Partida partida = partidaRepository.findById(partidaId)
                 .orElseThrow(()-> new EntityNotFoundException("Partida não encontrada"));
 
-        Long numeroInscritos = inscricaoRepository.countByPartida_IdPartida(partidaId);
 
-        if (numeroInscritos >= partida.getQtdeAtletas()) {
-            throw new IllegalStateException("Número máximo de atletas já foi atingido para esta partida.");
-        }
 
         if (inscricao.getIdInscricao() != null) {
             inscricaoResult = this.findById(inscricao.getIdInscricao());
 
             if (inscricaoResult != null) {
                 inscricaoResult.setDataInscricao(date);
-                inscricaoResult.setStatusInscricao(statusInscricao);
+                inscricaoResult.setStatusInscricao(inscricao.getStatusInscricao());
 
                 inscricaoResult = inscricaoRepository.save(inscricaoResult);
             }
+
         } else {
+            Long numeroInscritos = inscricaoRepository.countByPartida_IdPartidaAndStatusInscricao_IdStatusInscricao(partidaId, 1);
+
+            if (numeroInscritos >= partida.getQtdeAtletas()) {
+                throw new IllegalStateException("Número máximo de atletas já foi atingido para esta partida.");
+            }
+            StatusInscricao statusInscricao = statusInscricaoRepository.findById(1L)
+                    .orElseThrow(() -> new EntityNotFoundException("Status de Inscrição não encontrado."));
+
             inscricao.setDataInscricao(date);
             inscricao.setStatusInscricao(statusInscricao);
 
@@ -86,4 +87,12 @@ public class InscricaoService {
         }
         return inscricoes;
     }
+
+    public Inscricao cancelarInscricaoById(Inscricao inscricao){
+        StatusInscricao status = new StatusInscricao();
+        status.setIdStatusInscricao(2l);
+        inscricao.setStatusInscricao(status);
+        return this.save(inscricao);
+    }
+
 }

@@ -36,13 +36,13 @@ public class Partida {
     @Column(nullable = false)
     private Date data;
 
-    private String faixaEtaria;
-
     private int qtdeAtletas;
 
     private String nomeLocal;
 
     private String endereco;
+
+    private String cidade;
 
     @JoinColumn(name = "fk_idAtleta")
     @ManyToOne
