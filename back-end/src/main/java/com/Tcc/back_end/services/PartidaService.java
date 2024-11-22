@@ -51,6 +51,7 @@ public class PartidaService {
                 partidaResult.setEndereco(partida.getEndereco());
                 partidaResult.setCidade(partida.getCidade());
                 partidaResult.setStatusPartida(partida.getStatusPartida());
+                partidaResult.setEsporte(partida.getEsporte());
 
                 partidaResult = partidaRepository.save(partidaResult);
             }

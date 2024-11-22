@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -29,23 +30,13 @@ public class Atleta {
     private String senha;
 
     @Column(nullable = false)
-    private Date dataNascimento;
+    private LocalDate dataNascimento;
 
     @Column(nullable = false)
     private String apelido;
 
     @Column(nullable = false)
     private String telefone;
-
-    private int avaliacao;
-
-    private int pontosFutebol;
-
-    private int pontosVolei;
-
-    private int pontosBasquete;
-
-    private int pontosFutevolei;
 
     private String imagem;
 
