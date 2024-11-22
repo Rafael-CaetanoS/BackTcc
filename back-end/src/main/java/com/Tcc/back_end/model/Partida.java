@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class Partida {
     private String horaFim;
 
     @Column(nullable = false)
-    private LocalDate data;
+    private Date data;
 
     private int qtdeAtletas;
 
