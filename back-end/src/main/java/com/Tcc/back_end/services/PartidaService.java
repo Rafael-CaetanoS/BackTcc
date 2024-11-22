@@ -52,7 +52,6 @@ public class PartidaService {
                 partidaResult.setCidade(partida.getCidade());
                 partidaResult.setStatusPartida(partida.getStatusPartida());
                 partidaResult.setEsporte(partida.getEsporte());
-
                 partidaResult = partidaRepository.save(partidaResult);
             }
         } else {
