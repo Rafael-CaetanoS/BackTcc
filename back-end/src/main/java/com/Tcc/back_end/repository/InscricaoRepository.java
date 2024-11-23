@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface InscricaoRepository extends JpaRepository<Inscricao, Long> {
     Optional<Inscricao> findById(Long id);
 
-    long countByPartida_IdPartida(Long partidaId);
+    Long countByPartida_IdPartidaAndStatusInscricao_IdStatusInscricao(Long partidaId, Integer idStatusInscricao);
 
     boolean existsByAtleta_IdAtletaAndPartida_IdPartida(Long atletaId, Long partidaId);
 

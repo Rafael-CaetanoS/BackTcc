@@ -37,16 +37,6 @@ public class Atleta {
     @Column(nullable = false)
     private String telefone;
 
-    private int avaliacao;
-
-    private int pontosFutebol;
-
-    private int pontosVolei;
-
-    private int pontosBasquete;
-
-    private int pontosFutevolei;
-
     private String imagem;
 
     @JsonIgnore

@@ -1,6 +1,4 @@
 package com.Tcc.back_end.services;
-
-import com.Tcc.back_end.model.Inscricao;
 import com.Tcc.back_end.model.JogadorTime;
 import com.Tcc.back_end.model.TimePartida;
 import com.Tcc.back_end.repository.JogadorTimeRepository;
@@ -23,6 +21,10 @@ public class GerenciarPartidaService {
 
     private TimePartida findById(Long id){
         return timeRepository.findById(id) .orElseThrow(() -> new EntityNotFoundException("Time não encontrado"));
+    }
+
+    public List<TimePartida> findByIdPartida(Long id){
+        return this.timeRepository.findByPartidaId(id);
     }
 
     public List<TimePartida> salvar (List<TimePartida> times){

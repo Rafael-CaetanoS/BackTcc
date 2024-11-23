@@ -46,12 +46,12 @@ public class PartidaService {
                 partidaResult.setHoraInicio(partida.getHoraInicio());
                 partidaResult.setHoraFim(partida.getHoraFim());
                 partidaResult.setData(partida.getData());
-                partidaResult.setFaixaEtaria(partida.getFaixaEtaria());
                 partidaResult.setQtdeAtletas(partida.getQtdeAtletas());
                 partidaResult.setNomeLocal(partida.getNomeLocal());
                 partidaResult.setEndereco(partida.getEndereco());
+                partidaResult.setCidade(partida.getCidade());
                 partidaResult.setStatusPartida(partida.getStatusPartida());
-
+                partidaResult.setEsporte(partida.getEsporte());
                 partidaResult = partidaRepository.save(partidaResult);
             }
         } else {
@@ -106,7 +106,4 @@ public class PartidaService {
 
         return this.save(partida);
     }
-
-
-
 }

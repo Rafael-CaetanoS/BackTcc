@@ -1,5 +1,6 @@
 package com.Tcc.back_end.controllers;
 
+import com.Tcc.back_end.model.Partida;
 import com.Tcc.back_end.model.TimePartida;
 import com.Tcc.back_end.services.GerenciarPartidaService;
 import org.springframework.http.ResponseEntity;
@@ -25,5 +26,9 @@ public class GerenciarPartidaController {
         return ResponseEntity.ok(savedTimes);
     }
 
-
+    @GetMapping("/{idPartida}")
+    public ResponseEntity<List<TimePartida>> retornarTimesIdPartida(@PathVariable Long idPartida) {
+        List<?> result = this.gerenciarService.findByIdPartida(idPartida);
+        return result.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok((List<TimePartida>) result);
+    }
 }
