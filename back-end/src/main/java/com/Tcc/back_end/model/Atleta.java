@@ -19,22 +19,22 @@ public class Atleta {
     @Column(name = "idAtleta")
     private Long idAtleta;
 
-    @Column(nullable = false)
+    @Column(nullable = false,length = 100 )
     private String nomeAtleta;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 150)
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 300)
     private String senha;
 
     @Column(nullable = false)
     private Date dataNascimento;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private String apelido;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 11)
     private String telefone;
 
     private String imagem;

@@ -22,20 +22,20 @@ public class Inscricao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idInscricao;
 
-    @Column(columnDefinition = "TIMESTAMP")
+    @Column(columnDefinition = "TIMESTAMP", nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataInscricao;
 
     @ManyToOne
-    @JoinColumn(name = "fk_idAtleta")
+    @JoinColumn(name = "fk_idAtleta", nullable = false)
     private Atleta atleta;
 
     @ManyToOne
-    @JoinColumn(name = "fk_idStatusInscricao")
+    @JoinColumn(name = "fk_idStatusInscricao", nullable = false)
     private StatusInscricao statusInscricao;
 
     @ManyToOne
-    @JoinColumn(name = "fk_idPartida")
+    @JoinColumn(name = "fk_idPartida", nullable = false)
     private Partida partida;
 
     @OneToMany(mappedBy = "inscricao")

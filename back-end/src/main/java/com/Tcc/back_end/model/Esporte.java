@@ -18,7 +18,7 @@ public class Esporte {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idEsporte;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 45)
     private String nomeEsporte;
 
     @JsonIgnore

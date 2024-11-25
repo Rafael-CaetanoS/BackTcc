@@ -19,9 +19,13 @@ public class TimePartida {
     @Column(name = "idTimePartida")
     private Long idTimePartida;
 
+    @Column(nullable = false, length = 45)
     private String nomeTime;
 
-    @JoinColumn(name = "fk_idPartida")
+    @Column(nullable = false, columnDefinition = "BIGINT DEFAULT 0")
+    private Long totalPontos;
+
+    @JoinColumn(name = "fk_idPartida", nullable = false)
     @ManyToOne
     private Partida partida;
 

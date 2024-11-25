@@ -17,12 +17,12 @@ public class JogadorTime {
     @Column(name = "idJogadorTime")
     private Long idJogadorTime;
 
-    @JoinColumn(name = "fk_idTimePartida")
+    @JoinColumn(name = "fk_idTimePartida", nullable = false)
     @ManyToOne
     @JsonIgnore
     private TimePartida timePartida;
 
-    @JoinColumn(name = "fk_idInscricao")
+    @JoinColumn(name = "fk_idInscricao", nullable = false)
     @ManyToOne
     private Inscricao inscricao;
 

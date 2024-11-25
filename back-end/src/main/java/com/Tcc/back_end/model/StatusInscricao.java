@@ -18,7 +18,7 @@ public class StatusInscricao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idStatusInscricao;
 
-    @Column(nullable = false, length = 6) //7
+    @Column(nullable = false, length = 20)
     private String status;
 
     @JsonIgnore
