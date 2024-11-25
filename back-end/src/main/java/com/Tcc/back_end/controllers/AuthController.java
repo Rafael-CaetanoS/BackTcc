@@ -29,7 +29,7 @@ public class AuthController {
         Atleta atleta = this.atletaRepository.findByEmail(body.email()).orElseThrow(() ->new RuntimeException("atleta não encontrado"));
         if(passwordEncoder.matches(body.senha(), atleta.getSenha())){
             String token = this.tokenService.generateToken(atleta);
-            return ResponseEntity.ok(new ResponseDTO(atleta.getNomeAtleta(), token, atleta.getIdAtleta()));
+            return ResponseEntity.ok(new ResponseDTO(atleta.getNomeAtleta(), token, atleta.getIdAtleta(), atleta.getApelido()));
         }
         return ResponseEntity.badRequest().build();
     }
@@ -50,7 +50,7 @@ public class AuthController {
             this.atletaRepository.save(newAtleta);
 
             String token = this.tokenService.generateToken(newAtleta);
-            return ResponseEntity.ok(new ResponseDTO(newAtleta.getNomeAtleta(), token, newAtleta.getIdAtleta()));
+            return ResponseEntity.ok(new ResponseDTO(newAtleta.getNomeAtleta(), token, newAtleta.getIdAtleta(), newAtleta.getApelido()));
         }
 
         return ResponseEntity.status(HttpStatus.CONFLICT).body("Atleta já registrado com este e-mail.");
