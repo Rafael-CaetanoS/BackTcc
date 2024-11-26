@@ -4,6 +4,7 @@ import com.Tcc.back_end.model.TimePartida;
 import com.Tcc.back_end.repository.JogadorTimeRepository;
 import com.Tcc.back_end.repository.TimePartidaRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class GerenciarPartidaService {
 
     @Autowired
@@ -35,7 +37,12 @@ public class GerenciarPartidaService {
                 timeResult = this.findById(time.getIdTimePartida());
 
                 if (timeResult != null) {
-                    //atualizar times
+                    timeResult.setPartida(time.getPartida());
+                    timeResult.setIdTimePartida(time.getIdTimePartida());
+                    timeResult.setNomeTime(time.getNomeTime());
+                    timeResult.setTotalPontos(time.getTotalPontos());
+
+                    this.timeRepository.save(timeResult);
                 }
 
             }else{
@@ -51,4 +58,5 @@ public class GerenciarPartidaService {
         }
         return savedTimes;
     }
+
 }

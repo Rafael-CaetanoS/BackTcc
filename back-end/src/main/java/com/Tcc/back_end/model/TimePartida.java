@@ -22,7 +22,7 @@ public class TimePartida {
     @Column(nullable = false, length = 45)
     private String nomeTime;
 
-    @Column(nullable = false, columnDefinition = "BIGINT DEFAULT 0")
+    @Column(columnDefinition = "BIGINT DEFAULT 0")
     private Long totalPontos;
 
     @JoinColumn(name = "fk_idPartida", nullable = false)
