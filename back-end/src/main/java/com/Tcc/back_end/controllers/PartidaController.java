@@ -68,4 +68,17 @@ public class PartidaController {
 
         return ResponseEntity.ok(partida);
     }
+
+    @PutMapping("/finalizar/{id}")
+    public ResponseEntity<?> finalizarPartida(@PathVariable Long id) {
+        Partida partida = partidaService.findById(id);
+        if (partida == null) {
+            return ResponseEntity.notFound().build();
+        }
+        partida = partidaService.finalizarPartidaById(partida);
+
+        return ResponseEntity.ok(partida);
+    }
+
+
 }

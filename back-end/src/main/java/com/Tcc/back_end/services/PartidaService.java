@@ -106,4 +106,12 @@ public class PartidaService {
 
         return this.save(partida);
     }
+
+    public Partida finalizarPartidaById(Partida partida){
+        StatusPartida status = new StatusPartida();
+        status.setIdStatusPartida(3l);
+        partida.setStatusPartida(status);
+
+        return this.save(partida);
+    }
 }
