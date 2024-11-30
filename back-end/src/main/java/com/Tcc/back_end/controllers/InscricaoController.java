@@ -55,4 +55,15 @@ public class InscricaoController {
 
         return ResponseEntity.ok(inscricao);
     }
+
+    @PutMapping("/expulsar/{id}")
+    public ResponseEntity<?> expulsarJogador(@PathVariable Long id) {
+        Inscricao inscricao = inscricaoService.findById(id);
+        if (inscricao == null) {
+            return ResponseEntity.notFound().build();
+        }
+        inscricao = inscricaoService.expulsarInscricaoById(inscricao);
+
+        return ResponseEntity.ok(inscricao);
+    }
 }

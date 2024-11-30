@@ -95,4 +95,11 @@ public class InscricaoService {
         return this.save(inscricao);
     }
 
+    public Inscricao expulsarInscricaoById(Inscricao inscricao){
+        StatusInscricao status = new StatusInscricao();
+        status.setIdStatusInscricao(3l);
+        inscricao.setStatusInscricao(status);
+        return this.save(inscricao);
+    }
+
 }
