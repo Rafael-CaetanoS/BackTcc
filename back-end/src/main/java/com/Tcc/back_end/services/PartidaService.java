@@ -11,6 +11,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -77,7 +78,7 @@ public class PartidaService {
     public List<Partida> findPartidasByInscricaoId(Long atletaId) {
         List<Partida> partidas = partidaRepository.findPartidasByInscricao(atletaId);
         if (partidas.isEmpty()) {
-            throw new EntityNotFoundException("Nenhuma partida encontrada para o atleta com ID: " + atletaId);
+            return Collections.emptyList();
         }
         return partidas;
     }
@@ -86,19 +87,20 @@ public class PartidaService {
     public List<Partida> findPartidasByStatusPartidaId(Long atletaId) {
         List<Partida> partidas = partidaRepository.retornarPartidas(atletaId);
         if (partidas.isEmpty()) {
-            throw new EntityNotFoundException("Nenhuma partida foi encontrada");
+            return Collections.emptyList();
         }
         return partidas;
     }
 
-    public List<Partida> findPartidaByAtletaId(Long atletaId){
+    public List<Partida> findPartidaByAtletaId(Long atletaId) {
         List<Partida> partidas = partidaRepository.findPartidaByAtletaId(atletaId);
-        if (partidas.isEmpty()){
-            throw new EntityNotFoundException("Nenhuma partida criada pelo usario foi encontrada");
+
+        if (partidas.isEmpty()) {
+            return Collections.emptyList();
         }
+
         return partidas;
     }
-
     public Partida cancelarPartidaById(Partida partida){
         StatusPartida status = new StatusPartida();
         status.setIdStatusPartida(2l);
